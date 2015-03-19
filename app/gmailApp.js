@@ -1,4 +1,6 @@
-angular.module('gmailApp', ['ui.router'])
+(function(){
+
+angular.module('gmailApp', ['inboxModule', 'ui.router'])
 .config(['$urlRouterProvider','$stateProvider',
 	function($urlRouterProvider, $stateProvider) {
 
@@ -16,3 +18,5 @@ angular.module('gmailApp', ['ui.router'])
 			$urlRouterProvider.when('', '/inbox');
 	
 	}])
+
+})();
