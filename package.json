@@ -1,0 +1,19 @@
+{
+  "name": "GmailClone",
+  "version": "0.0.1",
+  "description": "Sipmle Mail Client app",
+  "main": "./app/gmailApp.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lisek02/GmailClone.git"
+  },
+  "author": "lisek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lisek02/GmailClone/issues"
+  },
+  "homepage": "https://github.com/lisek02/GmailClone"
+}

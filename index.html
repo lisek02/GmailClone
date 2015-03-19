@@ -4,7 +4,7 @@
   <title>Gmail App</title>
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
-<body ng-app="GmailApp" ng-controller="InboxController as inbox">
+<body ng-app="gmailApp">
     <header class="header">
         <div>
             <h1>Mail Client in AngularJS</h1>
@@ -13,15 +13,26 @@
     <main>
         <div class="flex">
             <div class="module inbox-view">
-                <h2>My Inbox</h2>
+              <h2>My Inbox</h2>
             </div>
             <div class="module directive">
-                <div class="search-bar"></div>
-                <div class="inbox__list">
-                </div>
+              <div ui-view></div>
+              <ul>
+                <li>
+                  <a ui-sref="inbox">Inbox</a>
+                </li>
+                <li>
+                  <a ui-sref="email">Email</a>
+                </li>
+              </ul>
             </div>
         </div>
     </main>
-    <script src="./app/angular.js"></script>        
+    <script src="./app/angular.js"></script>    
+    <script src="./app/angular-ui-router.js"></script>
+    <script src="./app/gmailApp.js"></script>   
+    <script type="text/javascript">
+        console.log("angular object",angular);
+    </script>
 </body>
 </html>
