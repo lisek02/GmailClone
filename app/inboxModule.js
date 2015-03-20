@@ -1,33 +1,16 @@
 (function() {
 angular.module('inboxModule', [])
 
-.controller('InboxController', ['$scope', function(){
-	this.messages = [
-		{
-	    "from": "TicketFactory",
-	    "date": 1400956671914,
-	    "subject": "Your confirmation #W45021238038",
-	    "id": 50223456
-	  },
-	  {
-	    "from": "TravisCI",
-	    "date": 1400956671914,
-	    "subject": "[Passed] conditionizr/conditionizr#1 (v0.1.0 - edd6500)",
-	    "id": 10824581
-	  },
-	  {
-	    "from": "GitHub",
-	    "date": 1400956671914,
-	    "subject": "New repo 'conditionizr' created",
-	    "id": 90345551
-	  },
-	  {
-	    "from": "Google Feedburner",
-	    "date": 1400956671914,
-	    "subject": "New subscription",
-	    "id": 74838344
-	  }
-	]
+.controller('InboxController', ['$scope', 'inboxFactory', function($scope, inboxFactory){
+	this.messages = [];
+
+	inboxFactory.getMessages()
+		.success( angular.bind(this, function(jsonData, statusCode) {
+			console.log('The request was successul!', statusCode, jsonData);
+			this.messages = jsonData;
+		}) );
+
+	console.log('Messages:', this.messages);
 }])
 
 .directive('inbox', function(){
@@ -38,6 +21,20 @@ angular.module('inboxModule', [])
 		link: function($scope, iElm, iAttrs, controller) {
 		}
 	};
-});
+})
+
+.factory('inboxFactory', function inboxFactory($http){
+	var exports = {}
+
+	exports.getMessages = function() {
+		return $http.get('app/json/emails.json')
+			.error(function(data) {
+				console.log('There was en error!', data);
+			});
+	};
+
+	return exports;
+
+})
 
 })();
