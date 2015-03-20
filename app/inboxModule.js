@@ -1,4 +1,4 @@
-(function(){
+(function() {
 angular.module('inboxModule', [])
 
 .controller('InboxController', ['$scope', function(){
@@ -29,5 +29,15 @@ angular.module('inboxModule', [])
 	  }
 	]
 }])
+
+.directive('inbox', function(){
+	// Runs during compile
+	return {
+		restrict: 'E',
+		templateUrl: 'app/js/directives/inbox.tmpl.html',
+		link: function($scope, iElm, iAttrs, controller) {
+		}
+	};
+});
 
 })();

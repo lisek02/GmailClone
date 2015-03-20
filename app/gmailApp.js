@@ -1,6 +1,6 @@
 (function(){
 
-angular.module('gmailApp', ['inboxModule', 'ui.router'])
+angular.module('gmailApp', ['inboxModule', 'emailModule', 'ui.router'])
 .config(['$urlRouterProvider','$stateProvider',
 	function($urlRouterProvider, $stateProvider) {
 
@@ -11,7 +11,7 @@ angular.module('gmailApp', ['inboxModule', 'ui.router'])
 			})
 
 			.state('email', {
-				url: '/email',
+				url: '/inbox/email/:id',
 				templateUrl: './app/views/email.html'
 			})
 

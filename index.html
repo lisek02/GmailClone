@@ -11,27 +11,13 @@
         </div>      
     </header>
     <main>
-        <div class="flex">
-            <div class="module inbox-view">
-              <h2>My Inbox</h2>
-            </div>
-            <div class="module directive">
-              <div ui-view></div>
-              <ul>
-                <li>
-                  <a ui-sref="inbox">Inbox</a>
-                </li>
-                <li>
-                  <a ui-sref="email">Email</a>
-                </li>
-              </ul>
-            </div>
-        </div>
+        <div ui-view class="flex"></div>
     </main>
     <script src="./app/angular.js"></script>    
     <script src="./app/angular-ui-router.js"></script>
     <script src="./app/gmailApp.js"></script>
     <script src="./app/inboxModule.js"></script>
+    <script src="./app/emailModule.js"></script>
     <script type="text/javascript">
         console.log("angular object",angular);
     </script>
