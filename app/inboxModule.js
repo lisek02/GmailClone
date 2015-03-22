@@ -4,10 +4,14 @@ angular.module('inboxModule', ['ngSanitize'])
 .controller('InboxController', ['$scope', 'inboxFactory', function($scope, inboxFactory){
 	this.messages = [];
 
+	this.deleteMessage = function(index) {
+		inboxFactory.deleteMessage(index);
+	};
+
 	inboxFactory.getMessages()
-		.success( angular.bind(this, function(jsonData, statusCode) {
-			console.log('The request was successul!', statusCode, jsonData);
-			this.messages = jsonData;
+		.then( angular.bind(this, function then() {
+			console.log('The request was successul!');
+			this.messages = inboxFactory.messages;
 		}) );
 
 	console.log('Messages:', this.messages);
@@ -23,14 +27,29 @@ angular.module('inboxModule', ['ngSanitize'])
 	};
 })
 
-.factory('inboxFactory', function inboxFactory($http){
-	var exports = {}
+.factory('inboxFactory', function inboxFactory($q, $http){
+	'use strict';
+	var exports = {};
+
+	exports.messages = [];
 
 	exports.getMessages = function() {
+		var deferred = $q.defer();
 		return $http.get('app/json/emails.json')
+			.success(function(data) {
+				exports.messages = data;
+				deferred.resolve(data);
+			})
 			.error(function(data) {
 				console.log('There was en error!', data);
+				deferred.reject(data);
 			});
+			return deferred.promise;
+	};
+
+	
+	exports.deleteMessage = function(index) {
+		this.messages.splice(index, 1);
 	};
 
 	return exports;

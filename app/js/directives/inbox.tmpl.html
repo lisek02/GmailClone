@@ -16,7 +16,7 @@
       </div>
       <div class="inbox__list-actions">
         <a ui-sref="email({ id: message.id })">Read</a>
-        <a href="#">Delete</a>
+        <a href="" ng-click="inbox.deleteMessage($index)">Delete</a>
       </div>
     </li>
   </div>
