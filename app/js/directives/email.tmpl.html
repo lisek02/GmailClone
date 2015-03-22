@@ -1,5 +1,10 @@
-<div class="email">
-	<div class="inbox__list">
-		Email view
+<div class="email" ng-controller="EmailController as emailCtrl">
+	<div class="email__info">
+		<p class="email__list-from" ng-bind-html="emailCtrl.email.from"></p>
+		<p class="email__list-date" ng-bind-html="emailCtrl.email.date"></p>
+		<p class="email__list-subject" ng-bind-html="emailCtrl.email.subject"></p>
+		<a href="#" class="email__reply">Reply</a>
+		<a href="#" class="email__back">Back</a>
 	</div>
+	<div class="email__content" ng-bind-html="emailCtrl.email.content"></div>
 </div>

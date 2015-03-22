@@ -1,5 +1,5 @@
 (function() {
-angular.module('inboxModule', [])
+angular.module('inboxModule', ['ngSanitize'])
 
 .controller('InboxController', ['$scope', 'inboxFactory', function($scope, inboxFactory){
 	this.messages = [];
